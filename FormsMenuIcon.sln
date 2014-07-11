@@ -53,7 +53,7 @@ Global
 		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Android\FormsMenuIcon.Android.csproj
+		StartupItem = iOS\FormsMenuIcon.iOS.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None
