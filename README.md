@@ -3,3 +3,5 @@ contains a slide-out menu implemented in form of a [MasterDetailPage][2]. While
 on Android there is a button with the app icon in the top left corner, which
 toggles the slide-out page, there is no such navigation bar item on iOS.
 
+![Android](https://raw.githubusercontent.com/perpetual-mobile/FormsMenuIcon/master/screenshots/android.png)
+![iOS](https://raw.githubusercontent.com/perpetual-mobile/FormsMenuIcon/master/screenshots/ios.png)
