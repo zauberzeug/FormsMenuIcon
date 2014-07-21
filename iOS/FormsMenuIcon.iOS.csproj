@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="NavigationPageRenderer.cs" />
   </ItemGroup>
   <Import Project="..\FormsMenuIcon.projitems" Label="Shared" Condition="Exists('..\FormsMenuIcon.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
