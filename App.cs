@@ -1,13 +1,19 @@
 ﻿using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace FormsMenuIcon
 {
     public static class App
     {
         public static MasterDetailPage Menu;
+        public static Dictionary<string,Page> DetailPages = new Dictionary<string, Page>();
 
         public static Page GetMainPage()
         {
+            DetailPages.Add("A", new NavigationPage(new DetailPage("Page A")));
+            DetailPages.Add("B", new NavigationPage(new DetailPage("Page B")));
+            DetailPages.Add("C", new NavigationPage(new DetailPage("Page C")));
+
             return Menu = new MainPage();
         }
     }
@@ -18,11 +24,9 @@ namespace FormsMenuIcon
         public MainPage()
         {
             Title = "Some Title";
-            var master = new MainMenu();
-            var detail = new NavigationPage(new FirstPage("FirstPage"));
 
-            Master = master;
-            Detail = detail;
+            Master = new MainMenu();
+            Detail = App.DetailPages["A"];
         }
     }
 
@@ -41,16 +45,16 @@ namespace FormsMenuIcon
         {
             var button = new Button { Text = name };
             button.Clicked += async delegate {
-                App.Menu.Detail = new NavigationPage(new FirstPage(name));
+                App.Menu.Detail = App.DetailPages[name];
                 App.Menu.IsPresented = false;
             };
             return button;
         }
     }
 
-    public class FirstPage: ContentPage
+    public class DetailPage: ContentPage
     {
-        public FirstPage(string text)
+        public DetailPage(string text)
         {
             Content = new Label{ Text = text };
         }
