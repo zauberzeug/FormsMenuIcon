@@ -1,16 +1,22 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using FormsMenuIcon.iOS;
+using System.Linq;
+
+[assembly:ExportRenderer(typeof(ContentPage), typeof(MyNavigationPageRenderer))]
+
 
 namespace FormsMenuIcon.iOS
 {
-    [assembly:ExportRenderer(typeof(NavigationPage), typeof(MyNavigationPageRenderer))]
-
-    public class MyNavigationPageRenderer : NavigationRenderer
+    public class MyNavigationPageRenderer : PageRenderer
     {
+      
+
         public override void ViewWillAppear(bool animated)
         {
-            NavigationBar.BackItem.Title = "M";
+
+            NavigationItem.SetLeftBarButtonItem(new MonoTouch.UIKit.UIBarButtonItem(MonoTouch.UIKit.UIBarButtonSystemItem.Bookmarks), true);
             base.ViewWillAppear(animated);
         }
     }
