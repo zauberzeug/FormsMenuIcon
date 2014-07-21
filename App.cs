@@ -4,11 +4,11 @@ namespace FormsMenuIcon
 {
     public static class App
     {
-        public static INavigation Navigation { get; set; }
+        public static MasterDetailPage Menu;
 
         public static Page GetMainPage()
         {
-            return new MainPage();
+            return Menu = new MainPage();
         }
     }
 
@@ -20,9 +20,7 @@ namespace FormsMenuIcon
             Title = "Some Title";
             var master = new MainMenu();
             var detail = new NavigationPage(new FirstPage("FirstPage"));
-            
-            App.Navigation = App.Navigation ?? detail.Navigation;
-            
+
             Master = master;
             Detail = detail;
         }
@@ -34,7 +32,8 @@ namespace FormsMenuIcon
         {
             Title = "MainMenu";
             Content = new StackLayout {
-                Children = { Link("A"), Link("B"), Link("C") }
+                Children = { Link("A"), Link("B"), Link("C") },
+                Padding = 20,
             };
         }
 
@@ -42,7 +41,8 @@ namespace FormsMenuIcon
         {
             var button = new Button { Text = name };
             button.Clicked += async delegate {
-                await App.Navigation.PushAsync(new FirstPage(name));
+                App.Menu.Detail = new NavigationPage(new FirstPage(name));
+                App.Menu.IsPresented = false;
             };
             return button;
         }
