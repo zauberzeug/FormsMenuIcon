@@ -34,7 +34,8 @@ namespace FormsMenuIcon
     {
         public MainMenu()
         {
-            Title = "MainMenu";
+            Title = "Main Menu";
+            Icon = "menu.jpg";
             Content = new StackLayout {
                 Children = { Link("A"), Link("B"), Link("C") },
                 Padding = 20,
@@ -56,7 +57,11 @@ namespace FormsMenuIcon
     {
         public DetailPage(string text)
         {
-            Content = new Label{ Text = text };
+            Content = new Button { Text = text, Command = new Command((obj) => {
+                    Navigation.PushAsync(new DetailPage("some sub page"));   
+                })
+            };
+
         }
     }
 }
