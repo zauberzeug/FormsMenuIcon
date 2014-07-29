@@ -35,7 +35,9 @@ namespace FormsMenuIcon
         public MainMenu()
         {
             Title = "Main Menu";
-            Icon = "menu.jpg";
+            if (Device.OS == TargetPlatform.iOS)
+                Icon = "menu.png";
+
             Content = new StackLayout {
                 Children = { Link("A"), Link("B"), Link("C") },
                 Padding = 20,

@@ -35,22 +35,6 @@ Global
 		{94533A88-1220-426B-AAE7-90F5694AF120}.Release|iPhone.Build.0 = Release|iPhone
 		{94533A88-1220-426B-AAE7-90F5694AF120}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{94533A88-1220-426B-AAE7-90F5694AF120}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.AppStore|iPhone.ActiveCfg = Release|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.AppStore|iPhone.Build.0 = Release|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Release|iPhone.Build.0 = Release|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{E2F79607-7A47-4323-A735-25B7C873F9EC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = iOS\FormsMenuIcon.iOS.csproj
