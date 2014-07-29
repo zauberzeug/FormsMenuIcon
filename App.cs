@@ -57,9 +57,10 @@ namespace FormsMenuIcon
 
     public class DetailPage: ContentPage
     {
-        public DetailPage(string text)
+        public DetailPage(string title)
         {
-            Content = new Button { Text = text, Command = new Command((obj) => {
+            Title = title;
+            Content = new Button { Text = "open sub page", Command = new Command((obj) => {
                     Navigation.PushAsync(new DetailPage("some sub page"));   
                 })
             };
