@@ -13,21 +13,35 @@ namespace FormsMenuIcon
                     Title = "Master",
                     Icon = Device.OS == TargetPlatform.iOS ? "menu.png" : null,
                     Content = new StackLayout {
-                        Children = { Link("A"), Link("B"), Link("C") }
+                        Children = { MenuLink("A"), MenuLink("B"), MenuLink("C") }
                     },
                 },
-                Detail = new NavigationPage(new ContentPage { Content = new Label { Text = "A" } }),
+                Detail = new NavigationPage(CreateContentPage("A")),
+            };
+        }
+
+        static Button MenuLink(string name)
+        {
+            return new Button {
+                Text = name,
+                Command = new Command(o => {
+                    MDPage.Detail = new NavigationPage(CreateContentPage(name));
+                    MDPage.IsPresented = false;
+                }),
             };
         }
 
         static Button Link(string name)
         {
-            var button = new Button { Text = name };
-            button.Clicked += delegate {
-                MDPage.Detail = new NavigationPage(new ContentPage { Content = new Label { Text = name } });
-                MDPage.IsPresented = false;
+            return new Button {
+                Text = name,
+                Command = new Command(o => MDPage.Detail.Navigation.PushAsync(CreateContentPage(name))),
             };
-            return button;
+        }
+
+        static ContentPage CreateContentPage(string text)
+        {
+            return new ContentPage { Title = text, Content = Link(text + ".sub") };
         }
     }
 }
