@@ -1,32 +1,30 @@
-﻿using System;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace FormsMenuIcon
 {
-    public class App
+    public static class App
     {
         static MasterDetailPage MDPage;
 
         public static Page GetMainPage()
         {
-            return new NavigationPage(
-                MDPage = new MasterDetailPage {
-                    Master = new ContentPage {
-                        Title = "Master",
-                        Content = new StackLayout {
-                            Children = { Link("A"), Link("B"), Link("C") }
-                        },
+            return MDPage = new MasterDetailPage {
+                Master = new ContentPage {
+                    Title = "Master",
+                    Icon = Device.OS == TargetPlatform.iOS ? "menu.png" : null,
+                    Content = new StackLayout {
+                        Children = { Link("A"), Link("B"), Link("C") }
                     },
-                    Detail = new ContentPage { Content = new Label { Text = "A" } },
-                });
+                },
+                Detail = new NavigationPage(new ContentPage { Content = new Label { Text = "A" } }),
+            };
         }
 
         static Button Link(string name)
         {
             var button = new Button { Text = name };
             button.Clicked += delegate {
-                MDPage.Detail = new ContentPage { Content = new Label { Text = name } };
+                MDPage.Detail = new NavigationPage(new ContentPage { Content = new Label { Text = name } });
                 MDPage.IsPresented = false;
             };
             return button;
