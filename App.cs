@@ -1,58 +1,35 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace FormsMenuIcon
 {
-    public static class App
+    public class App
     {
-        public static INavigation Navigation { get; set; }
+        static MasterDetailPage MDPage;
 
         public static Page GetMainPage()
         {
-            return new MainPage();
-        }
-    }
-
-    public class MainPage : MasterDetailPage
-    {
-        
-        public MainPage()
-        {
-            Title = "Some Title";
-            var master = new MainMenu();
-            var detail = new NavigationPage(new FirstPage("FirstPage"));
-            
-            App.Navigation = App.Navigation ?? detail.Navigation;
-            
-            Master = master;
-            Detail = detail;
-        }
-    }
-
-    public class MainMenu: ContentPage
-    {
-        public MainMenu()
-        {
-            Title = "MainMenu";
-            Content = new StackLayout {
-                Children = { Link("A"), Link("B"), Link("C") }
-            };
+            return new NavigationPage(
+                MDPage = new MasterDetailPage {
+                    Master = new ContentPage {
+                        Title = "Master",
+                        Content = new StackLayout {
+                            Children = { Link("A"), Link("B"), Link("C") }
+                        },
+                    },
+                    Detail = new ContentPage { Content = new Label { Text = "A" } },
+                });
         }
 
         static Button Link(string name)
         {
             var button = new Button { Text = name };
-            button.Clicked += async delegate {
-                await App.Navigation.PushAsync(new FirstPage(name));
+            button.Clicked += delegate {
+                MDPage.Detail = new ContentPage { Content = new Label { Text = name } };
+                MDPage.IsPresented = false;
             };
             return button;
-        }
-    }
-
-    public class FirstPage: ContentPage
-    {
-        public FirstPage(string text)
-        {
-            Content = new Label{ Text = text };
         }
     }
 }
