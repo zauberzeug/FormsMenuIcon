@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace FormsMenuIcon
 {
@@ -8,7 +9,7 @@ namespace FormsMenuIcon
 
         public static Page GetMainPage()
         {
-            return MDPage = new MasterDetailPage {
+            MDPage = new MasterDetailPage {
                 Master = new ContentPage {
                     Title = "Master",
                     Icon = Device.OS == TargetPlatform.iOS ? "menu.png" : null,
@@ -18,6 +19,8 @@ namespace FormsMenuIcon
                 },
                 Detail = new NavigationPage(CreateContentPage("A")),
             };
+            MDPage.IsPresentedChanged += (sender, e) => Console.WriteLine(DateTime.Now + ": " + MDPage.IsPresented);
+            return MDPage;
         }
 
         static Button MenuLink(string name)
