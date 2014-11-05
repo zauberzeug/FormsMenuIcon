@@ -5,26 +5,50 @@ namespace FormsMenuIcon
 {
     public static class App
     {
-        static MasterDetailPage MDPage;
-
         public static Page GetMainPage()
         {
-            MDPage = new MasterDetailPage {
-                Master = new ContentPage {
-                    Title = "Master",
-                    Icon = Device.OS == TargetPlatform.iOS ? "menu.png" : null,
-                    Content = new Button {
-                        Text = "Open detail",
-                        Command = new Command(o => {
-                            MDPage.Detail = new NavigationPage(new ContentPage());
-                            MDPage.IsPresented = false;
-                        }),
+            var MDPage = new MasterDetailPage();
+            MDPage.Master = new ContentPage {
+                Title = "Master",
+                Icon = Device.OS == TargetPlatform.iOS ? "menu.png" : null,
+                Content = new StackLayout {
+                    Children = {
+                        new Button {
+                            Text = "Open detail A",
+                            Command = new Command(o => {
+                                MDPage.Detail = new NavigationPage(new CountingPage{ Title = "A" });
+                                MDPage.IsPresented = false;
+                            }),
+                        },
+                        new Button {
+                            Text = "Open detail B",
+                            Command = new Command(o => {
+                                MDPage.Detail = new NavigationPage(new CountingPage{ Title = "B" });
+                                MDPage.IsPresented = false;
+                            }),
+                        },
                     },
                 },
-                Detail = new NavigationPage(new ContentPage()),
             };
-            MDPage.IsPresentedChanged += (sender, e) => Console.WriteLine(DateTime.Now + ": " + MDPage.IsPresented);
+            MDPage.Detail = new NavigationPage(new CountingPage{ Title = "A" });
             return MDPage;
+        }
+    }
+
+    class CountingPage: ContentPage
+    {
+        static int count;
+
+        public CountingPage()
+        {
+            count++;
+            Console.WriteLine("Constructor: " + count + " instances now");
+        }
+
+        ~CountingPage()
+        {
+            count--;
+            Console.WriteLine("Destructor: " + count + " instances now");
         }
     }
 }
