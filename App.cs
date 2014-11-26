@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace FormsMenuIcon
@@ -43,12 +44,38 @@ namespace FormsMenuIcon
         {
             count++;
             Console.WriteLine("Constructor: " + count + " instances now");
+
+            Content = new ListView {
+                ItemsSource = NumberList.Instance.List,
+            };
+        }
+
+        protected override void OnDisappearing()
+        {
+            (Content as ListView).RemoveBinding(ListView.ItemsSourceProperty);
+            base.OnDisappearing();
         }
 
         ~CountingPage()
         {
             count--;
             Console.WriteLine("Destructor: " + count + " instances now");
+        }
+    }
+
+    sealed class NumberList
+    {
+        // http://csharpindepth.com/Articles/General/Singleton.aspx (Version 6)
+        static readonly Lazy<NumberList> lazy = new Lazy<NumberList>(() => new NumberList());
+
+        public static NumberList Instance { get { return lazy.Value; } }
+
+        readonly List<string> list = new List<string>();
+
+        public List<string> List {
+            get {
+                return new List<string>(list);
+            }
         }
     }
 }
