@@ -15,23 +15,16 @@ namespace FormsMenuIcon
                 Content = new StackLayout {
                     Children = {
                         new Button {
-                            Text = "Open detail A",
+                            Text = "Open counting page",
                             Command = new Command(o => {
-                                MDPage.Detail = new NavigationPage(new CountingPage{ Title = "A" });
-                                MDPage.IsPresented = false;
-                            }),
-                        },
-                        new Button {
-                            Text = "Open detail B",
-                            Command = new Command(o => {
-                                MDPage.Detail = new NavigationPage(new CountingPage{ Title = "B" });
+                                MDPage.Detail = new NavigationPage(new CountingPage());
                                 MDPage.IsPresented = false;
                             }),
                         },
                     },
                 },
             };
-            MDPage.Detail = new NavigationPage(new CountingPage{ Title = "A" });
+            MDPage.Detail = new NavigationPage(new CountingPage());
             return MDPage;
         }
     }
@@ -60,10 +53,9 @@ namespace FormsMenuIcon
 
     public class CustomCell: ViewCell
     {
-        Label label = new Label();
-
         public CustomCell()
         {
+            var label = new Label();
             label.SetBinding(Label.TextProperty, ".");
             View = label;
         }
