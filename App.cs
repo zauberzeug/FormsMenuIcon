@@ -47,13 +47,8 @@ namespace FormsMenuIcon
 
             Content = new ListView {
                 ItemsSource = NumberList.Instance.List,
+                ItemTemplate = new DataTemplate(typeof(AlertCell)),
             };
-        }
-
-        protected override void OnDisappearing()
-        {
-            (Content as ListView).RemoveBinding(ListView.ItemsSourceProperty);
-            base.OnDisappearing();
         }
 
         ~CountingPage()
@@ -70,12 +65,64 @@ namespace FormsMenuIcon
 
         public static NumberList Instance { get { return lazy.Value; } }
 
-        readonly List<string> list = new List<string>();
+        readonly List<Alert> list = new List<Alert> {
+            new Alert{ Type = "A", Message = "a" },
+            new Alert{ Type = "B", Message = "b" },
+            new Alert{ Type = "C", Message = "c" },
+        };
 
-        public List<string> List {
+        public List<Alert> List {
             get {
-                return new List<string>(list);
+                return new List<Alert>(list);
             }
+        }
+    }
+
+    class Alert
+    {
+        public string Type { get; set; }
+
+        public string Message { get; set; }
+    }
+
+    public class AlertCell: ViewCell
+    {
+        public static readonly int RowHeight = Device.OS == TargetPlatform.iOS ? 52 : 58;
+
+        public AlertCell()
+        {
+            var image = new Image {
+                HorizontalOptions = LayoutOptions.Start,
+                WidthRequest = 35,
+            };
+            var title = new Label {
+                LineBreakMode = LineBreakMode.TailTruncation,
+                YAlign = TextAlignment.Center,
+            };
+            var description = new Label {
+                LineBreakMode = LineBreakMode.TailTruncation,
+                YAlign = TextAlignment.Center,
+            };
+
+            title.SetBinding(Label.TextProperty, "Type");
+            description.SetBinding(Label.TextProperty, "Message");
+
+            View = new StackLayout {
+                Orientation = StackOrientation.Horizontal,
+                Children = {
+                    image,
+                    new StackLayout {
+                        Orientation = StackOrientation.Vertical,
+                        HorizontalOptions = LayoutOptions.StartAndExpand,
+                        Spacing = 0,
+                        Padding = new Thickness(0, -5, 0, 0),
+                        Children = {
+                            title,
+                            description,
+                        },
+                    },
+                },
+            };
         }
     }
 }
