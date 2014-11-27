@@ -40,20 +40,14 @@ namespace FormsMenuIcon
     {
         static int count;
 
-        static readonly List<Alert> list = new List<Alert> {
-            new Alert{ Type = "A", Message = "a" },
-            new Alert{ Type = "B", Message = "b" },
-            new Alert{ Type = "C", Message = "c" },
-        };
-
         public CountingPage()
         {
             count++;
             Console.WriteLine("Constructor: " + count + " instances now");
 
             Content = new ListView {
-                ItemsSource = list,
-                ItemTemplate = new DataTemplate(typeof(AlertCell)),
+                ItemsSource = new List<string> { "1", "2", "3" },
+                ItemTemplate = new DataTemplate(typeof(CustomCell)),
             };
         }
 
@@ -64,27 +58,14 @@ namespace FormsMenuIcon
         }
     }
 
-    class Alert
+    public class CustomCell: ViewCell
     {
-        public string Type { get; set; }
+        Label label = new Label();
 
-        public string Message { get; set; }
-    }
-
-    public class AlertCell: ViewCell
-    {
-        public AlertCell()
+        public CustomCell()
         {
-            var title = new Label();
-            var description = new Label();
-            title.SetBinding(Label.TextProperty, "Type");
-            description.SetBinding(Label.TextProperty, "Message");
-            View = new StackLayout {
-                Children = {
-                    title,
-                    description,
-                },
-            };
+            label.SetBinding(Label.TextProperty, ".");
+            View = label;
         }
     }
 }
