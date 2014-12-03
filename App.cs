@@ -13,6 +13,7 @@ namespace FormsMenuIcon
                 Title = "Master",
                 Icon = Device.OS == TargetPlatform.iOS ? "menu.png" : null,
                 Content = new StackLayout {
+                    Padding = 20,
                     Children = {
                         new Button {
                             Text = "Open counting page",
